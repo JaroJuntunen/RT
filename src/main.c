@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/12 13:16:21 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:07:44 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ int	main(void)
 	main.cam.motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1,0,0)));
 	main.cam.coi_motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1,0,0)));
 
-	main.light = point_light_new(point_new(0.0, 10, -10.0), color_new(1,1,1));
+	main.light = point_light_new(point_new(0.0, 0, 0.0), color_new(1,1,1));
 	// main.light.pos = point_new(10, 0, 0);
 	
-	main.obj[0] = object_new(SPHERE);
+	main.obj[0] = object_new(CYLINDER);
 	
 	main.obj[0].transform = matrix_translate(0.0, 0.0, 7.0);
 											x_r = 0.0;
@@ -117,14 +117,14 @@ int	main(void)
 	scale = matrix_scale(2,2,2);
 	main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &scale);
 	main.obj[0].material.color = color_new(1,0,0);
-	main.obj[0].motion = motion_new(TRUE, 5.0, tuple_unit(vector_new(1,0,0)));
+	main.obj[0].motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1,0,0)));
 	main.obj[0].material.pattern.pattern_id = NONE;
 	main.obj[0].material.pattern.pattern_perlin = TRUE;
 	main.obj[0].negative = TRUE;
 	
-	main.obj[1] = object_new(PLANE);
-	main.obj[1].transform = matrix_translate(0, -10.0, 15.0);
-											x_r = 0.0;
+	main.obj[1] = object_new(CYLINDER);
+	main.obj[1].transform = matrix_translate(0, 0.0, 15.0);
+											x_r = M_PI_2;
 											y_r = 0.0;
 											z_r = 0.0;
 
@@ -133,6 +133,8 @@ int	main(void)
 	rotate = matrix_rotate_y(y_r);
 	main.obj[1].transform = matrix_multiply(&main.obj[1].transform, &rotate);
 	rotate = matrix_rotate_z(z_r);
+	scale = matrix_scale(5,5,5);
+	main.obj[1].transform = matrix_multiply(&main.obj[1].transform, &scale);
 	main.obj[1].transform = matrix_multiply(&main.obj[1].transform, &rotate);
 	main.obj[1].material.color = color_new(1.0, 1.0, 1.0);
 	main.obj[1].material.pattern.pattern_id = NONE;
@@ -179,8 +181,8 @@ int	main(void)
 	main.obj[3].negative = FALSE;
 
 	main.obj[4] = object_new(CYLINDER);
-	main.obj[4].transform = matrix_translate(-3.0, -2.0, 10.0);
-											x_r = 0.0;
+	main.obj[4].transform = matrix_translate(0.0, 0.0, 10.0);
+											x_r = M_PI_2;
 											y_r = 0.0;
 											z_r = 0.0;
 
@@ -195,7 +197,7 @@ int	main(void)
 	main.obj[4].material.color = color_new(1, 0.5,0);
 	main.obj[4].material.pattern.pattern_id = NONE;
 	main.obj[4].material.pattern.pattern_perlin = FALSE;
-	main.obj[4].negative = FALSE;
+	main.obj[4].negative = TRUE;
 	
 	main.obj[5] = object_new(SPHERE);
 	main.obj[5].transform = matrix_translate(0.0, 0.0, 10.0);
@@ -227,13 +229,13 @@ int	main(void)
 		create_threads(&main, 1);
 		draw_frame(&main);
 		edge_detection(&main.sdl.frame_buffer);
-/* 		main.ant_al = A_A_DIV;
-		draw_frame(&main); */
-/* 		if (main.sdl.stereocopy == TRUE)
-			create_stereoscope(&main, cam_scale, main.cam.transform); */
-		/* create_motion_blur(&main); */
+		main.ant_al = A_A_DIV;
+		draw_frame(&main);
+		if (main.sdl.stereocopy == TRUE)
+			create_stereoscope(&main, cam_scale, main.cam.transform);
+		create_motion_blur(&main);
 	}
-	/* tests(&main, draw_debug); */
+/* 	tests(&main, draw_debug); */
 	rt_loop_and_exit(&main.sdl);
 	SDL_Quit();
 	return (0);

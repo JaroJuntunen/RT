@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:13:33 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/12 13:40:48 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:07:24 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_intersection	find_negative_object_intersect(t_ray *ray, int neg_obj_id,
 	neg_obj_id = move_negative(ray, neg_obj_id, &neg_hits, obj);
 	if (first_positive_object(ray, &closest_t, &neg_hits, obj) == 1)
 	{
-		ray->hit.hit_dist = neg_hits.t[1];
+		ray->hit.hit_dist = closest_t.t;
 		ray->hit.clo_obj_id = closest_t.i;
 		ray->hit.hit_loc = ray_position(*ray, ray->hit.hit_dist);
 		ray->hit.normal = normal_at(&obj[neg_obj_id], ray->hit.hit_loc);

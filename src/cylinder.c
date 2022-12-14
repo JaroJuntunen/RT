@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:44:22 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/12 12:52:26 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/14 14:41:32 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,5 @@ int	intersect_cylinder(t_ray *inc_ray, t_object *s)
 	t2 = (-(abcd.b) + sqrt(abcd.d)) / (2 * abcd.a);
 	intersection_record(inc_ray, t1, s);
 	intersection_record(inc_ray, t2, s);
-	return (0);
+	return (1);
 }

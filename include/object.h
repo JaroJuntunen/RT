@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/12 13:29:24 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/12 15:37:07 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ int					intersect_cylinder(t_ray *inc_ray, t_object *s);
 int					intersect_cone(t_ray *inc_ray, t_object *s);
 t_intersection		intersection_new(double time, t_object *o);
 t_intersection		find_closest_intersection(t_intersections *xs);
+t_intersection		find_first_intersection(t_intersections *xs);
 void				set_transform(t_object *obj, t_matrix *transform);
 t_vector			normal_at(t_object *obj, t_point point);
 t_material			material_new();

@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:56:58 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/07 15:07:00 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/14 14:45:44 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,12 @@ int	ray_shooter(t_ray *ray, t_main *main)
 	{
 		if (fill_hit_record(main, ray) == 1)
 			return (0);
-		hit_color = lighting(main->obj[ray->hit.clo_obj_id].material,
+		hit_color = main->obj[ray->hit.clo_obj_id].material.color;
+		if (ray->hit.inside == TRUE)
+			printf("hello\n");
+		/* hit_color = lighting(main->obj[ray->hit.clo_obj_id].material,
 				main->light, ray->hit.hit_loc, tuple_neg(ray->dir),
-				ray->hit.normal);
+				ray->hit.normal); */
 		if (main->obj[ray->hit.clo_obj_id].material.pattern.pattern_id != NONE)
 			pattern_at(ray->hit, ray->hit.hit_loc, &hit_color, &main->perlin);
 		main->ray.hit.color = tuple_add(main->ray.hit.color, hit_color);
