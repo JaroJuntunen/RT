@@ -39,9 +39,10 @@ void	create_red_blue_stereoscopy(t_frame_buffer *fb)
 	}
 }
 
-void	create_stereoscope(t_main *main, t_matrix cam_scale,
-							t_matrix cam_transform)
+void	create_stereoscope(t_main *main, t_matrix cam_transform)
 {
+	t_matrix	cam_scale;
+
 	main->sdl.frame_buffer.stereocopy
 		= ft_memcpy(main->sdl.frame_buffer.stereocopy,
 			main->sdl.frame_buffer.data,
