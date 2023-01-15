@@ -5,12 +5,11 @@ scenes+=("BREAK")
 while read -r line; do
 	scenes+=("$line")
 done < <(ls test_scenes/)
-i=0
 PS3="Scene #: "
-select scene in ${scenes[@]};  do
-	if [ $scene = "BREAK" ]; then
+select scene in "${scenes[@]}";  do
+	if [ "$scene" = "BREAK" ]; then
 		break
 	fi
 	echo "Rendering: $scene"
-	./RT test_scenes/$scene
+	./RT test_scenes/"$scene"
 done
