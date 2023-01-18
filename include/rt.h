@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/16 13:55:36 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:03:44 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@
 # define EDGE_DETECTION_PRECISION 0.02
 # define DEFAULT_MAX_REFLECTIONS 4
 
-# define	STEREOSCOPY 1
-# define	NORMAL 2
-# define	BLACK_AND_WHITE 3
-# define	SEPIA 4
-# define	CARTOON 5
-# define	B_W_CARTOON 6
-# define	EDGE 7
+# define STEREOSCOPY 1
+# define NORMAL 2
+# define BLACK_AND_WHITE 3
+# define SEPIA 4
+# define CARTOON 5
+# define B_W_CARTOON 6
+# define EDGE 7
 
 typedef struct s_frame_buffer
 {

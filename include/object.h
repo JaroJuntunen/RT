@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/15 15:14:04 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:19:08 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,4 +197,6 @@ void				get_negative_intersects(t_ray *ray, size_t neg_obj_id, \
 size_t				move_negative(t_ray *ray, size_t neg_obj_id, t_negative *n);
 int					first_positive_object(t_ray *ray, \
 					t_intersection *closest_t, t_negative *n);
+void				slice(t_ray *ray, double t1, double t2, t_object *obj);
+
 #endif

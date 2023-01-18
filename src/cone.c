@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 20:36:35 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/07 11:49:34 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:04:01 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static double	calc_c(t_ray ray)
 		+ (ray.orig.s_xyzw.z * ray.orig.s_xyzw.z));
 }
 
-int	intersect_cone(t_ray *inc_ray, t_object *s)
+int	intersect_cone(t_ray *inc_ray, t_object *obj)
 {
 	t_abcd		abcd;
 	double		t1;
@@ -44,7 +44,7 @@ int	intersect_cone(t_ray *inc_ray, t_object *s)
 	t_ray		ray;
 
 	ray = ray_new_no_malloc(inc_ray->orig, inc_ray->dir);
-	ray = ray_transform(inc_ray, &s->inverse_transform);
+	ray = ray_transform(inc_ray, &obj->inverse_transform);
 	abcd.a = calc_a(ray);
 	abcd.b = calc_b(ray);
 	abcd.c = calc_c(ray);
@@ -53,7 +53,6 @@ int	intersect_cone(t_ray *inc_ray, t_object *s)
 		return (0);
 	t1 = (-(abcd.b) - sqrt(abcd.d)) / (2 * abcd.a);
 	t2 = (-(abcd.b) + sqrt(abcd.d)) / (2 * abcd.a);
-	intersection_record(inc_ray, t1, s);
-	intersection_record(inc_ray, t2, s);
+	slice(inc_ray, t1, t2, obj);
 	return (1);
 }
