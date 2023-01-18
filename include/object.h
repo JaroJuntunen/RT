@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/18 13:19:08 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:25:46 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ typedef struct s_object
 	t_tuple			color;
 	t_material		material;
 	t_motion_blur	motion;
+	int				slice_toggle;
+	t_vector		slice_vector;
 }					t_object;
 
 typedef struct s_abc
@@ -197,6 +199,10 @@ void				get_negative_intersects(t_ray *ray, size_t neg_obj_id, \
 size_t				move_negative(t_ray *ray, size_t neg_obj_id, t_negative *n);
 int					first_positive_object(t_ray *ray, \
 					t_intersection *closest_t, t_negative *n);
-void				slice(t_ray *ray, double t1, double t2, t_object *obj);
+void				slice(
+						t_ray *ray,
+						double t1,
+						double t2,
+						t_object *obj);
 
 #endif

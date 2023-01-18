@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:35:17 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/11/13 16:47:16 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:24:19 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ t_object	object_new(int shape_type)
 	new_object.type = shape_type;
 	new_object.material = material_new();
 	new_object.motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1, 0, 0)));
+	new_object.slice_toggle = 0;
+	new_object.slice_vector = vector_new(1.0, 0.0, 0.0);
 	return (new_object);
 }

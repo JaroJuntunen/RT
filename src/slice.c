@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:09:55 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/18 13:20:33 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:25:01 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,20 @@ static t_vector	get_local_hit(t_ray *ray, double time)
 	return (hit);
 }
 
-void	slice(t_ray *ray, double t1, double t2, t_object *obj)
+void	slice(t_ray *ray_save_hits, double t1, double t2, t_object *obj)
 {
 	t_vector	local_hit;
-	t_vector	slice;
 	double		dot;
 
-	slice = vector_new(-1.0, -0.2, 0.3);
-	local_hit = get_local_hit(ray, t1);
-	dot = vector_dot(slice, local_hit);
-	if (dot < 1.0)
-		intersection_record(ray, t1, obj);
+	local_hit = get_local_hit(ray_save_hits, t1);
+	dot = vector_dot(obj->slice_vector, local_hit);
+	if (obj->slice_toggle == 0 || dot < 1.0)
+		intersection_record(ray_save_hits, t1, obj);
 	if (obj->type != PLANE)
 	{
-		local_hit = get_local_hit(ray, t1);
-		dot = vector_dot(slice, local_hit);
-		if (dot < 1.0)
-			intersection_record(ray, t2, obj);
+		local_hit = get_local_hit(ray_save_hits, t2);
+		dot = vector_dot(obj->slice_vector, local_hit);
+		if (obj->slice_toggle == 0 || dot < 1.0)
+			intersection_record(ray_save_hits, t2, obj);
 	}
 }
