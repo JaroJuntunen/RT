@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:44:22 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 15:32:43 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/18 12:14:53 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ double	calc_c(t_ray ray)
 		+ (ray.orig.s_xyzw.z * ray.orig.s_xyzw.z) - 1);
 }
 
-int	intersect_cylinder(t_ray *inc_ray, t_object *s)
+int	intersect_cylinder(t_ray *inc_ray, t_object *obj)
 {
 	t_abcd		abcd;
 	double		t1;
@@ -41,7 +41,7 @@ int	intersect_cylinder(t_ray *inc_ray, t_object *s)
 	t_ray		ray;
 
 	ray = ray_new_no_malloc(inc_ray->orig, inc_ray->dir);
-	ray = ray_transform(inc_ray, &s->inverse_transform);
+	ray = ray_transform(inc_ray, &obj->inverse_transform);
 	abcd.a = calc_a(ray);
 	if (nearly_equal(abcd.a, 0))
 		return (0);
@@ -52,7 +52,6 @@ int	intersect_cylinder(t_ray *inc_ray, t_object *s)
 		return (0);
 	t1 = (-(abcd.b) - sqrt(abcd.d)) / (2 * abcd.a);
 	t2 = (-(abcd.b) + sqrt(abcd.d)) / (2 * abcd.a);
-	intersection_record(inc_ray, t1, s);
-	intersection_record(inc_ray, t2, s);
+	slice(ray, t1, t2, obj);
 	return (1);
 }
