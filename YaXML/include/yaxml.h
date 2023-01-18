@@ -13,12 +13,7 @@
 #ifndef YAXML_H
 # define YAXML_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <errno.h>
 # include <fcntl.h>
-
 # include "libft.h"
 
 # ifndef TRUE

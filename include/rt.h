@@ -37,16 +37,13 @@
 # define EDGE_DETECTION_PRECISION 0.02
 # define DEFAULT_MAX_REFLECTIONS 4
 
-enum
-{
-	STEREOSCOPY,
-	NORMAL,
-	BLACK_AND_WHITE,
-	SEPIA,
-	CARTOON,
-	B_W_CARTOON,
-	EDGE,
-};
+# define	STEREOSCOPY 1
+# define	NORMAL 2
+# define	BLACK_AND_WHITE 3
+# define	SEPIA 4
+# define	CARTOON 5
+# define	B_W_CARTOON 6
+# define	EDGE 7
 
 typedef struct s_frame_buffer
 {

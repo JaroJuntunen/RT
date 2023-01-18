@@ -42,7 +42,7 @@ int	*get_correct_buffer(t_sdl *sdl, int *filter_type)
 {
 	if (*filter_type == NORMAL)
 		return (sdl->frame_buffer.data);
-	else if (filter_type == STEREOSCOPY)
+	else if (*filter_type == STEREOSCOPY)
 		return (sdl->frame_buffer.stereocopy);
 	else
 		return (sdl->frame_buffer.filter);
