@@ -134,6 +134,7 @@ typedef struct s_hit_record
 	int				normal_disturbance;
 	t_tuple			surf3_coord;
 	t_tuple			surf2_coord;
+	t_tuple			local;
 }					t_hit_record;
 
 typedef struct s_ray
